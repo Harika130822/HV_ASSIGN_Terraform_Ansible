@@ -87,4 +87,65 @@ web_server_public_ip = [
 ## Screenshots
 [Screenshot for each resource of VPC, EC2, Role and Security Groups](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/01_InfrastructureSetupTerraform/Screeshots)
 
+## Data Flow
+Root Module → Orchestrates 3 modular components
+VPC Module → Provides networking infrastructure (VPC, subnets, gateways)
+Security Module → Creates security & IAM configurations (references VPC outputs)
+EC2 Module → Deploys instances using outputs from VPC & Security modules
 
+## Folder Structure
+
+```
+01_InfrastructureSetupTerraform/
+├── main.tf                          # Root module orchestrating all components
+├── outputs.tf                       # Root level outputs
+├── readme.md                        # Documentation (this file)
+│
+├── VPC/                             # Virtual Private Cloud Module
+│   ├── main.tf                      # VPC, Subnets, IGW, NAT Gateway configurations
+│   ├── variables.tf                 # VPC input variables
+│   ├── outputs.tf                   # VPC outputs (vpc_id, subnet_ids)
+│   └── terraform.tfvars             # VPC variable values
+│
+├── EC2/                             # Elastic Compute Cloud Module
+│   ├── main.tf                      # Web and DB server instance configurations
+│   ├── data.tf                      # Data sources (AMI lookups)
+│   ├── variables.tf                 # EC2 input variables
+│   ├── outputs.tf                   # EC2 outputs (instance_ids, public_ip)
+│   ├── terraform.tfvars             # EC2 variable values
+│   ├── my-key                       # SSH private key (keep secure)
+│   └── my-key.pub                   # SSH public key
+│
+├── Roles&SecurityGroups/            # IAM Roles and Security Groups Module
+│   ├── main.tf                      # Security groups and IAM role configurations
+│   ├── data.tf                      # Data sources
+│   ├── variables.tf                 # Input variables
+│   ├── outputs.tf                   # IAM and SG outputs
+│   └── terraform.tfvars             # Variable values
+│
+└── Screeshots/                      # Directory for infrastructure screenshots
+    └── readme.md                    # Screenshots documentation
+```
+
+## Module Relationships
+
+```
+main.tf (Root)
+    ├─→ VPC Module
+    │   ├─ aws_vpc.main
+    │   ├─ aws_subnet.public & private
+    │   ├─ aws_internet_gateway
+    │   ├─ aws_nat_gateway
+    │   └─ Route tables
+    │
+    ├─→ Roles&SecurityGroups Module
+    │   ├─ aws_security_group (web_sg)
+    │   ├─ aws_security_group (db_sg)
+    │   ├─ aws_iam_role
+    │   └─ aws_iam_instance_profile
+    │
+    └─→ EC2 Module
+        ├─ aws_instance (web_server) → Public Subnet
+        ├─ aws_instance (db_server)  → Private Subnet
+        └─ aws_key_pair
+```
