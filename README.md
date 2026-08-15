@@ -3,16 +3,19 @@ HV_ASSIGN_Terraform_Ansible
 
 # [Part 1: Infrastructure Setup with Terraform](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/01_InfrastructureSetupTerraform/readme.md)
 
-[Documentation ](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/01_InfrastructureSetupTerraform/readme.md)
 
 ## 1. AWS Setup and Terraform Initialization
 - Configure AWS CLI and authenticate with your AWS account.
 - Initialize a new Terraform project targeting AWS.
 
+[Documentation for setup of AWS CLI, Terraform ](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/01_InfrastructureSetupTerraform/readme.md)
+
 ## 2. VPC and Network Configuration
 - Create an AWS VPC with two subnets: one public and one private.
 - Set up an Internet Gateway and a NAT Gateway.
 - Configure route tables for both subnets.
+
+[Terraform files for VPC creation](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/01_InfrastructureSetupTerraform/VPC)
 
 ## 3. EC2 Instance Provisioning
 - Launch two EC2 instances:
@@ -21,12 +24,19 @@ HV_ASSIGN_Terraform_Ansible
 - Ensure both instances are accessible via SSH:
   - Public instance only accessible from your IP.
 
+[Terraform Files for EC2 Creation](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/01_InfrastructureSetupTerraform/EC2)
+
 ## 4. Security Groups and IAM Roles
 - Create necessary security groups for web and database servers.
 - Set up IAM roles for EC2 instances with required permissions.
 
+[Terraform Files for Roles and Security Groups Creation](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/01_InfrastructureSetupTerraform/Roles%26SecurityGroups)
+
 ## 5. Resource Output
 - Output the public IP of the web server EC2 instance.
+
+[Screenshot for each resource of VPC, EC2, Role and Security Groups](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/01_InfrastructureSetupTerraform/Screeshots)
+
 
 ---
 
