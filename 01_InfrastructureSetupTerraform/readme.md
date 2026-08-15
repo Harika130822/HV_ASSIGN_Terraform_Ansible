@@ -84,6 +84,7 @@ web_server_public_ip = [
 
 > <img width="683" height="389" alt="image" src="https://github.com/user-attachments/assets/8c912171-2f0a-4db2-b67c-cb43288fa6b7" />
 
-
+## Screenshots
+[Screenshot for each resource of VPC, EC2, Role and Security Groups](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/01_InfrastructureSetupTerraform/Screeshots)
 
 
