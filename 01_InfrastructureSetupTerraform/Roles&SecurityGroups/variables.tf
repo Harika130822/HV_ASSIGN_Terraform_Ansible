@@ -1,3 +1,10 @@
+# Define the aws region variable
+variable "aws_region" {
+  description = "AWS region to deploy resources"
+  type        = string
+  default     = "ap-south-1"
+}
+
 # Define the name for the security group
 variable "security_group_name" {
   description = "Name of the security group"
@@ -24,4 +31,11 @@ variable "iam_role_name" {
   description = "Name of the IAM role"
   type        = string
   default     = "web-server-role"
+}
+
+# Define the key pair name
+variable "key_name" {
+  description = "Name of the SSH key pair"
+  type        = string
+  sensitive   = true
 }

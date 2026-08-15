@@ -15,17 +15,13 @@ data "aws_ami" "amazon_linux" {
   owners = ["137112412989"] # Amazon's official AMI owner ID
 }
 
-# Retrieve the VPC ID from the VPC module
-data "aws_vpc" "main" {
-  id = module.vpc.vpc_id
-}
-
 # Retrieve the public subnet ID from the VPC module
 data "aws_subnet" "public" {
   id = module.vpc.public_subnet_id
 }
 
-# Retrieve the private subnet ID from the VPC module (if needed)
+# Retrieve the private subnet ID from the VPC module
 data "aws_subnet" "private" {
   id = module.vpc.private_subnet_id
 }
+

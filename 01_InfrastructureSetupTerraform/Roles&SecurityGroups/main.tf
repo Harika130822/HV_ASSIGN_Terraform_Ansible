@@ -5,16 +5,17 @@ module "vpc" {
 
 # Reference the EC2Instance module
 module "ec2" {
-  source = "../EC2" # Adjust the path to the EC2 module as needed
+  source   = "../EC2" # Adjust the path to the EC2 module as needed
+  key_name = var.key_name
 }
 
 resource "aws_security_group" "web_sg" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = data.aws_vpc.main.id
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["YOUR_IP/32"]
+    cidr_blocks = ["103.164.161.6/32"]
   }
   ingress {
     from_port   = 80
@@ -28,11 +29,11 @@ resource "aws_security_group" "web_sg" {
 }
 
 resource "aws_security_group" "db_sg" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = data.aws_vpc.main.id
   ingress {
-    from_port   = 27017
-    to_port     = 27017
-    protocol    = "tcp"
+    from_port       = 27017
+    to_port         = 27017
+    protocol        = "tcp"
     security_groups = [aws_security_group.web_sg.id]
   }
   tags = {
@@ -40,7 +41,8 @@ resource "aws_security_group" "db_sg" {
   }
 }
 
-resource "aws_iam_role" "ec2_role" {
-  name = "ec2-role"
+resource "aws_iam_role" "web_server_role" {
+  name               = "web_server_role"
   assume_role_policy = data.aws_iam_policy_document.ec2_assume_role.json
 }
+

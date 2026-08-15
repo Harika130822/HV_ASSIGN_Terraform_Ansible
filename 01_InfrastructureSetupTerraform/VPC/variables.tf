@@ -1,3 +1,10 @@
+# Define the aws region variable
+variable "aws_region" {
+  description = "AWS region to deploy resources"
+  type        = string
+  default     = "ap-south-1"
+}
+
 # Define the VPC CIDR block
 variable "vpc_cidr_block" {
   description = "CIDR block for the VPC"

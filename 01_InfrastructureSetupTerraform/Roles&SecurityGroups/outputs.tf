@@ -1,6 +1,6 @@
 # Output the security group ID
 output "security_group_id" {
-  value       = aws_security_group.web_server_sg.id
+  value       = aws_security_group.web_sg.id
   description = "The ID of the security group for the web server"
 }
 
@@ -14,4 +14,10 @@ output "iam_role_arn" {
 output "iam_role_name" {
   value       = aws_iam_role.web_server_role.name
   description = "The name of the IAM role for the web server"
+}
+
+# Output the security group ID
+output "security_group_db_id" {
+  value       = aws_security_group.db_sg.id
+  description = "The ID of the security group for the database server"
 }

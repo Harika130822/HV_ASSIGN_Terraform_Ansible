@@ -7,5 +7,8 @@ public_subnet_cidr = "10.0.1.0/24"
 # Private subnet CIDR block
 private_subnet_cidr = "10.0.2.0/24"
 
+# aws region
+aws_region = "ap-south-1"
+
 # Availability zone
 availability_zone = "ap-south-1b"

@@ -17,3 +17,14 @@ data "aws_subnet" "private" {
 data "aws_instance" "web_server" {
   instance_id = module.ec2.web_server_instance_ids[0]
 }
+
+data "aws_iam_policy_document" "ec2_assume_role" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
+}

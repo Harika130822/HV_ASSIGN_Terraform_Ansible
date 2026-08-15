@@ -52,10 +52,16 @@ output "nat_gateway_id" {
   description = "The ID of the NAT Gateway"
 }
 
-# Output the NAT Gateway ARN
-output "nat_gateway_arn" {
-  value       = aws_nat_gateway.nat.arn
-  description = "The ARN of the NAT Gateway"
+# Output the Elastic IP ID for the NAT Gateway
+output "nat_gateway_allocation_id" {
+  value       = aws_nat_gateway.nat.allocation_id
+  description = "The ID of the Elastic IP associated with the NAT Gateway"
+}
+
+# Output the Subnet ID where NAT Gateway is deployed
+output "nat_gateway_subnet_id" {
+  value       = aws_nat_gateway.nat.subnet_id
+  description = "The ID of the subnet where the NAT Gateway is deployed"
 }
 
 # Output the Public Route Table ID

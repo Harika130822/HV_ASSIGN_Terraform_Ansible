@@ -38,7 +38,9 @@ resource "aws_internet_gateway" "igw" {
 
 # Set Up NAT Gateway:
 resource "aws_eip" "nat_eip" {
-  vpc = true
+  tags = {
+    Name = "main-nat-eip"
+  }
 }
 
 resource "aws_nat_gateway" "nat" {
