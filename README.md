@@ -1,7 +1,7 @@
 # HV_ASSIGN_Terraform_Ansible
 HV_ASSIGN_Terraform_Ansible
 
-# Part 1: Infrastructure Setup with Terraform
+# [Part 1: Infrastructure Setup with Terraform](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/edit/main/01_InfrastructureSetupTerraform/readme.md)
 
 [Documentation ](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/edit/main/01_InfrastructureSetupTerraform/readme.md)
 
