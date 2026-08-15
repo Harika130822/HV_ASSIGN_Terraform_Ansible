@@ -39,3 +39,9 @@ variable "key_name" {
   type        = string
   sensitive   = true
 }
+
+variable "my_ip_cidr" {
+  description = "Your IP address in CIDR notation for SSH access"
+  type        = string
+  default     = "0.0.0.0/0" # Replace with your actual IP address in CIDR format
+}

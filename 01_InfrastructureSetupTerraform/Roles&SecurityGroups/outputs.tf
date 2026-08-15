@@ -21,3 +21,8 @@ output "security_group_db_id" {
   value       = aws_security_group.db_sg.id
   description = "The ID of the security group for the database server"
 }
+
+output "aws_iam_instance_profile" {
+  value       = aws_iam_instance_profile.web_server_instance_profile.name
+  description = "The name of the IAM instance profile for the web server"
+}

@@ -1,14 +1,17 @@
-# VPC CIDR block
-vpc_cidr_block = "10.0.0.0/16"
-
-# Public subnet CIDR block
-public_subnet_cidr = "10.0.1.0/24"
-
-# Private subnet CIDR block
-private_subnet_cidr = "10.0.2.0/24"
-
 # aws region
 aws_region = "ap-south-1"
 
-# Availability zone
-availability_zone = "ap-south-1b"
+# Security group name
+security_group_name = "web-server-sg"
+
+# Security group description
+security_group_description = "Security group for web server"
+
+# Allowed ingress CIDR block
+allowed_cidr = "0.0.0.0/0"
+
+# IAM role name
+iam_role_name = "web-server-role"
+
+# Name of the SSH key pair
+key_name = "my-key"

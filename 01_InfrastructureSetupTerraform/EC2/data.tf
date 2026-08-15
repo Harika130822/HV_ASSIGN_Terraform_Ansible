@@ -1,5 +1,5 @@
-# Fetch the latest Amazon Linux 2 AMI
-data "aws_ami" "amazon_linux" {
+# Fetch the latest Ubuntu AMI
+data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
@@ -15,13 +15,15 @@ data "aws_ami" "amazon_linux" {
   owners = ["137112412989"] # Amazon's official AMI owner ID
 }
 
+
+
 # Retrieve the public subnet ID from the VPC module
 data "aws_subnet" "public" {
-  id = module.vpc.public_subnet_id
+  id = var.public_subnet_id
 }
 
 # Retrieve the private subnet ID from the VPC module
 data "aws_subnet" "private" {
-  id = module.vpc.private_subnet_id
+  id = var.private_subnet_id
 }
 

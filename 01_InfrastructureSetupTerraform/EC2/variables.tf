@@ -26,3 +26,10 @@ variable "instance_count" {
   type        = number
   default     = 1
 }
+
+# AMI owner ID for Amazon Linux 2 (configurable)
+variable "ami_owner" {
+  description = "Owner ID for the Amazon Linux 2 AMI"
+  type        = string
+  default     = "129373676098"
+}
