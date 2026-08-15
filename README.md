@@ -3,6 +3,8 @@ HV_ASSIGN_Terraform_Ansible
 
 # Part 1: Infrastructure Setup with Terraform
 
+[Documentation ](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/edit/main/01_InfrastructureSetupTerraform/readme.md)
+
 ## 1. AWS Setup and Terraform Initialization
 - Configure AWS CLI and authenticate with your AWS account.
 - Initialize a new Terraform project targeting AWS.
