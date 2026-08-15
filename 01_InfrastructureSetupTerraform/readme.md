@@ -89,8 +89,11 @@ web_server_public_ip = [
 
 ## Data Flow
 Root Module → Orchestrates 3 modular components
+
 VPC Module → Provides networking infrastructure (VPC, subnets, gateways)
+
 Security Module → Creates security & IAM configurations (references VPC outputs)
+
 EC2 Module → Deploys instances using outputs from VPC & Security modules
 
 ## Folder Structure
