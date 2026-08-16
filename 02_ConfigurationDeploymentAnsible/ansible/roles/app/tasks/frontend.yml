@@ -1,0 +1,14 @@
+---
+- name: Install frontend packages
+  npm:
+    path: /opt/travelmemory/frontend
+
+- name: Create frontend env file
+  template:
+    src: frontend.env.j2
+    dest: /opt/travelmemory/frontend/.env
+
+- name: Build frontend
+  shell: npm run build
+  args:
+    chdir: /opt/travelmemory/frontend

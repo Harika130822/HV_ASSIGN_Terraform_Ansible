@@ -1,0 +1,15 @@
+---
+- hosts: dbservers
+  become: yes
+  roles:
+    - common
+    - mongodb
+    - security
+
+- hosts: webservers
+  become: yes
+  roles:
+    - common
+    - nodejs
+    - app
+    - security

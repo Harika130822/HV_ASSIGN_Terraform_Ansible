@@ -1,0 +1,10 @@
+---
+- name: Allow MongoDB from Web Subnet
+  ufw:
+    rule: allow
+    port: '27017'
+    src: 10.0.1.0/24
+
+- name: Enable UFW
+  ufw:
+    state: enabled

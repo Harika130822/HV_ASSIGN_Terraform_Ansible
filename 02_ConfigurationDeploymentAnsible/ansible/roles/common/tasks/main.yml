@@ -1,0 +1,13 @@
+---
+- name: Update package cache
+  apt:
+    update_cache: yes
+
+- name: Install packages
+  apt:
+    name:
+      - git
+      - curl
+      - unzip
+      - ufw
+    state: present

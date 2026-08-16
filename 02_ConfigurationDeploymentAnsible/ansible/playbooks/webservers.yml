@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: yes
+
+  roles:
+    - common
+    - mongodb
+    - security
+
+  tasks:
+    - import_role:
+        name: security
+        tasks_from: main.yml

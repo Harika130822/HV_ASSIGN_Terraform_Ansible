@@ -13,6 +13,12 @@ resource "aws_security_group" "web_sg" {
     cidr_blocks = [var.my_ip_cidr] # Replace with your IP or CIDR block for SSH access
   }
   ingress {
+    from_port   = 3000
+    to_port     = 3001
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip_cidr] # Replace with your IP or CIDR block for SSH access
+  }
+  ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
