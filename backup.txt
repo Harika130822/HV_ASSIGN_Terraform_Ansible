@@ -1,16 +1,18 @@
+##
+NodeJs install
 ---
-- name: Add NodeSource gpg key
-  apt_key:
-    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    state: present
+- name: Download and add NodeSource repository for Node.js
+  get_url:
+    url: "https://deb.nodesource.com/setup_18.x"
+    dest: /tmp/nodesource_setup.sh
+    mode: '0755'
   become: yes
 
-- name: Add NodeSource repository
-  apt_repository:
-    repo: "deb https://deb.nodesource.com/node_18.x {{ ansible_distribution_release }} main"
-    state: present
-    update_cache: yes
+- name: Run NodeSource setup script
+  command: bash /tmp/nodesource_setup.sh
   become: yes
+  args:
+    creates: /etc/apt/sources.list.d/nodesource.list
 
 - name: Install Node.js
   apt:

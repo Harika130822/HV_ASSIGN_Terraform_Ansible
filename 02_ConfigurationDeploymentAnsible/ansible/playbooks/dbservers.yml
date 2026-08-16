@@ -6,9 +6,3 @@
     - common
     - mongodb
     - security
-
-
-  tasks:
-    - import_role:
-        name: security
-        tasks_from: db_main.yml

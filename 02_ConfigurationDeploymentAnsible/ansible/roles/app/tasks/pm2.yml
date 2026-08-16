@@ -2,12 +2,12 @@
 - name: Start Backend
   shell: pm2 start index.js --name travelmemory-api
   args:
-    chdir: /opt/travelmemory/backend
+    chdir: "{{ app_dest }}/backend"
 
 - name: Start Frontend
   shell: pm2 start "npm start" --name travelmemory-ui
   args:
-    chdir: /opt/travelmemory/frontend
+    chdir: "{{ app_dest }}/frontend"
 
 - name: Save PM2 Processes
   shell: pm2 save

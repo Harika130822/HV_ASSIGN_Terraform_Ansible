@@ -1,9 +1,9 @@
 ---
-- name: Install backend packages
-  npm:
-    path: /opt/travelmemory/backend
-
 - name: Create backend env file
   template:
     src: backend.env.j2
-    dest: /opt/travelmemory/backend/.env
+    dest: "{{ app_dest }}/backend/.env"
+
+- name: Install backend packages
+  npm:
+    path: "{{ app_dest }}/backend"

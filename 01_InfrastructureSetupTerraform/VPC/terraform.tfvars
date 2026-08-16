@@ -15,3 +15,6 @@ iam_role_name = "web-server-role"
 
 # Name of the SSH key pair
 key_name = "my-key"
+
+# My IP Configuration
+my_ip_cidr = "103.X.Y.Z/32"

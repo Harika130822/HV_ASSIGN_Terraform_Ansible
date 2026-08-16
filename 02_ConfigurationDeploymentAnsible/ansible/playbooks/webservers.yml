@@ -4,10 +4,7 @@
 
   roles:
     - common
+    - nodejs
+    - app
     - mongodb
     - security
-
-  tasks:
-    - import_role:
-        name: security
-        tasks_from: main.yml

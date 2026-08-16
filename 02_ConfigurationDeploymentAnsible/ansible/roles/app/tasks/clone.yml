@@ -1,7 +1,7 @@
 ---
 - name: Clone TravelMemory Repository
   git:
-    repo: https://github.com/Harika130822/HV_TravelMemory.git
-    dest: /opt/travelmemory
+    repo: "{{ app_repo }}"
+    dest: "{{ app_dest }}"
     version: main
     force: yes

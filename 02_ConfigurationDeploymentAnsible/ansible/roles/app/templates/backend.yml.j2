@@ -1,2 +1,2 @@
 PORT=3001
-MONGO_URI=mongodb://<username>:<password>{{ db_private_ip }}:27017/travelmemorydb?authSource=admin
+MONGO_URI='mongodb://{{ mongo_user }}:{{ mongo_password }}@{{ db_private_ip }}:27017/{{ mongo_db_name }}?authSource=admin'

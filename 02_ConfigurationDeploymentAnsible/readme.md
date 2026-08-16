@@ -30,3 +30,4 @@ TravelMemory React UI
 Express API
         |
 MongoDB Private EC2
+

@@ -20,6 +20,12 @@ variable "key_name" {
   sensitive   = true
 }
 
+variable "ssh_key_path" {
+  description = "Path to the SSH public key"
+  type        = string
+  default     = "./EC2/my-key.pub" # "~/.ssh/id_rsa.pub"
+}
+
 # Define the number of instances
 variable "instance_count" {
   description = "Number of EC2 instances to launch"
