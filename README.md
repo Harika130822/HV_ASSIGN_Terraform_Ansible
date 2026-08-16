@@ -1,6 +1,7 @@
 # HV_ASSIGN_Terraform_Ansible
 HV_ASSIGN_Terraform_Ansible
 
+
 # [Part 1: Infrastructure Setup with Terraform](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/01_InfrastructureSetupTerraform/readme.md)
 
 
@@ -65,6 +66,40 @@ HV_ASSIGN_Terraform_Ansible
   - Disabling root login.
 
 ---
+
+
+```
+                    Internet
+                        |
+                Route53 / Public DNS
+                        |
+                 AWS Security Group
+                        |
+                +----------------+
+                |  Web EC2       |
+                | Public Subnet  |
+                |----------------|
+                | React Frontend |
+                | Express API    |
+                | PM2            |
+                +--------+-------+
+                         |
+                Port 5000/3001
+                         |
+         Private Security Group Rule
+                         |
+                +--------v-------+
+                |  MongoDB EC2   |
+                | Private Subnet |
+                |----------------|
+                | MongoDB 7.x    |
+                | travelmemorydb |
+                +----------------+
+
+Terraform ---> Creates Infrastructure
+Ansible -----> Configures Servers & Deploys App
+
+```
 
 # Deliverables
 - **Terraform scripts** for AWS infrastructure setup.
