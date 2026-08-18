@@ -1,16 +1,29 @@
 ---
-- name: Start Backend
-  shell: pm2 start index.js --name travelmemory-api
+- name: deploy pm2 file for backend
+  template:
+    src: pm.config.js.j2
+    dest: "{{ app_dest }}/backend/pm.config.js"
+    owner: ubuntu
+    group: ubuntu
+
+- name: Start/reload Backend
+  command: pm2 startOrReload pm.config.js
   args:
     chdir: "{{ app_dest }}/backend"
-
-- name: Start Frontend
-  shell: pm2 start "npm start" --name travelmemory-ui
-  args:
-    chdir: "{{ app_dest }}/frontend"
+  become: true
+  become_user: ubuntu
+  environment: 
+    PM2_HOME: "/home/ubuntu/.pm2"
 
 - name: Save PM2 Processes
   shell: pm2 save
+  become: true
+  become_user: ubuntu
+  environment: 
+    PM2_HOME: "/home/ubuntu/.pm2"
 
-- name: Enable PM2 Startup
-  shell: pm2 startup systemd -u ubuntu --hp /home/ubuntu
+- name: PM2 systemd service
+  command: pm2 startup systemd -u ubuntu --hp /home/ubuntu
+  become: true
+  register: pm2_startup
+  changed_when: "'already' not in pm2_startup.stdout | default('')"

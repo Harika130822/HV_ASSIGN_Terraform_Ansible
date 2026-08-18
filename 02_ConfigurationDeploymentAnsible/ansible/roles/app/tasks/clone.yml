@@ -1,7 +1,18 @@
 ---
+- name: Ensure destination directory exists
+  file:
+    path: "{{ app_dest }}"
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+  become: true
+
 - name: Clone TravelMemory Repository
   git:
     repo: "{{ app_repo }}"
     dest: "{{ app_dest }}"
     version: main
     force: yes
+  become: true
+  become_user: ubuntu

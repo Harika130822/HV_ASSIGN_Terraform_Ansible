@@ -1,1 +1,5 @@
 group_vars/
+my-key.pem
+my-key.pub
+my-key
+*.j2

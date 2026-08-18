@@ -1,3 +1,101 @@
 ---
-- import_tasks: ssh.yml
-- import_tasks: firewall.yml
+# --- SSH hardening (applies to both web and db) ---------------------------
+- name: Disable SSH root login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+  become: true
+  notify: restart sshd
+
+- name: Disable SSH password authentication (key-only)
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  become: true
+  notify: restart sshd
+
+- name: Disable empty passwords
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PermitEmptyPasswords'
+    line: 'PermitEmptyPasswords no'
+  become: true
+  notify: restart sshd
+
+- name: Limit SSH auth attempts
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?MaxAuthTries'
+    line: 'MaxAuthTries 3'
+  become: true
+  notify: restart sshd
+
+- name: Flush handlers so sshd changes take effect before ufw locks anything down
+  meta: flush_handlers
+
+# --- Host firewall (ufw). Mirrors the AWS security group rules as a
+# second layer of defense — if a security group is ever misconfigured,
+# the host firewall still blocks it. -----------------------------------
+- name: "ufw: set default deny incoming"
+  ufw:
+    direction: incoming
+    policy: deny
+  become: true
+
+- name: "ufw: set default allow outgoing"
+  ufw:
+    direction: outgoing
+    policy: allow
+  become: true
+
+- name: "ufw: allow SSH from admin IP only (web server)"
+  ufw:
+    rule: allow
+    port: "22"
+    proto: tcp
+    src: "{{ my_ip | default('0.0.0.0/0') }}"
+  become: true
+  when: "'web' in group_names"
+
+- name: "ufw: allow SSH from the VPC CIDR only (db server, reached via bastion)"
+  ufw:
+    rule: allow
+    port: "22"
+    proto: tcp
+    src: "{{ vpc_cidr | default('10.0.0.0/16') }}"
+  become: true
+  when: "'db' in group_names"
+
+- name: "ufw: allow HTTP/HTTPS (web server)"
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    - "80"
+    - "443"
+  become: true
+  when: "'web' in group_names"
+
+- name: "ufw: allow MongoDB from the VPC CIDR only (db server)"
+  ufw:
+    rule: allow
+    port: "27017"
+    proto: tcp
+    src: "{{ vpc_cidr | default('10.0.0.0/16') }}"
+  become: true
+  when: "'db' in group_names"
+
+- name: "ufw: enable"
+  ufw:
+    state: enabled
+  become: true
+
+- name: Ensure fail2ban is running (brute-force SSH protection)
+  systemd:
+    name: fail2ban
+    enabled: yes
+    state: started
+  become: true

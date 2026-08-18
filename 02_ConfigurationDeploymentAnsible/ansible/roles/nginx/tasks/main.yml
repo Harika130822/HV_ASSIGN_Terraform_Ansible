@@ -1,0 +1,31 @@
+---
+# tasks file for nginx reverse proxy
+
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+  become: true
+
+- name: Deploy reverse proxy config
+  ansible.builtin.template:
+    src: reverse-proxy.conf.j2
+    dest: /etc/nginx/sites-available/travelmemory.conf
+  notify: Restart nginx
+  become: true
+
+- name: Enable reverse proxy site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/travelmemory.conf
+    dest: /etc/nginx/sites-enabled/travelmemory.conf
+    state: link
+  notify: Restart nginx
+  become: true
+
+- name: Ensure Nginx is running
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: true
+  become: true

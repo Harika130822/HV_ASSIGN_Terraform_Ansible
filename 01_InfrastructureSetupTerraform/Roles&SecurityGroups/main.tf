@@ -73,7 +73,7 @@ resource "aws_iam_role" "web_server_role" {
 
 resource "aws_iam_role_policy_attachment" "web_server_role_policy" {
   role       = aws_iam_role.web_server_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 resource "aws_iam_instance_profile" "web_server_instance_profile" {

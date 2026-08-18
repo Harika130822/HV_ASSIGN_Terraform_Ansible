@@ -1,4 +1,110 @@
 ---
-- import_tasks: install.yml
-- import_tasks: configure.yml
-- import_tasks: users.yml
+- name: Install prerequisite packages
+  apt:
+    name:
+      - gnupg
+      - curl
+    state: present
+  become: true
+
+- name: Add MongoDB GPG key
+  apt_key:
+    url: "https://pgp.mongodb.com/server-6.0.asc"
+    state: present
+  become: true
+
+- name: Add MongoDB apt repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse"
+    state: present
+    filename: mongodb-org-6.0
+  become: true
+
+- name: Install mongodb-org
+  apt:
+    name: mongodb-org
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Ensure MongoDB data/log dirs are owned correctly
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: mongodb
+    group: mongodb
+  loop:
+    - /var/lib/mongodb
+    - /var/log/mongodb
+  become: true
+
+# --- Step 1: start WITHOUT auth so we can create the first admin user ----
+- name: Deploy mongod.conf (auth disabled for bootstrap)
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    auth_enabled: false
+    become: true
+  notify: restart mongod
+
+- name: Enable and start mongod
+  systemd:
+    name: mongod
+    enabled: yes
+    state: started
+  become: true
+
+- name: Flush handlers so mongod is running with the bootstrap config
+  meta: flush_handlers
+
+- name: Wait for MongoDB to accept connections
+  wait_for:
+    host: 127.0.0.1
+    port: 27017
+    delay: 3
+    timeout: 300
+
+- name: Check whether the admin user already exists
+  command: >
+    mongosh --quiet --eval
+    "db.getSiblingDB('admin').getUser('mongoAdmin')"
+  register: admin_user_check
+  changed_when: false
+  failed_when: false
+
+- name: Create MongoDB admin (root) user
+  command: >
+    mongosh --quiet --eval
+    "db.getSiblingDB('admin').createUser({user: 'mongoAdmin', pwd: '{{ mongo_admin_password }}', roles: [{role: 'root', db: 'admin'}]})"
+  when: "'null' in admin_user_check.stdout"
+
+- name: Create application database user with least-privilege role
+  command: >
+    mongosh --quiet -u mongoAdmin -p '{{ mongo_admin_password }}' --authenticationDatabase admin --eval
+    "db.getSiblingDB('{{ mongo_db_name }}').createUser({user: '{{ mongo_app_user }}', pwd: '{{ mongo_app_password }}', roles: [{role: 'readWrite', db: '{{ mongo_db_name }}'}]})"
+  register: app_user_create
+  changed_when: "'already exists' not in app_user_create.stderr"
+  failed_when: >
+    app_user_create.rc != 0 and 'already exists' not in app_user_create.stderr
+
+# --- Step 2: re-deploy config WITH auth enabled and bound to the private
+# subnet IP (not 0.0.0.0) so only hosts inside the VPC can even attempt a
+# connection, and only with valid credentials from here on ---------------
+- name: Deploy mongod.conf (auth enabled, bound to private IP + localhost)
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    auth_enabled: true
+  become: true
+  notify: restart mongod
+
+- name: Flush handlers to apply the secured config
+  meta: flush_handlers

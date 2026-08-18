@@ -49,6 +49,7 @@ terraform validate
 terraform plan
 terraform apply
 terraform output
+terraform apply -auto-approve -no-color > apply_output.txt
 terraform destroy
 ```
 
