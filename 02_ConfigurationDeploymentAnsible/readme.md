@@ -48,4 +48,13 @@ ansible-playbook -i inventory/hosts.ini playbooks/site.yml --ask-vault-pass
 [Screenshots taken while execution and validating the browser](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/02_ConfigurationDeploymentAnsible/Screenshots/readme.md)
 
 
-## 
+## Execution Output
+
+[Execution Output](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/02_ConfigurationDeploymentAnsible/ansible_ubuntu_execution_output.txt)
+
+## validation outputs
+
+> ![Uploading image.png…]()
+
+
+
