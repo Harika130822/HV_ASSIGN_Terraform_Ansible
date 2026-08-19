@@ -1,0 +1,21 @@
+app_repo: "https://github.com/UnpredictablePrashant/TravelMemory.git"
+app_dest: "/opt/travelmemory"
+app_dir: "/opt/travelmemory"
+nodejs_version: 18
+app_port: 3001
+
+mongodb_port: 27017
+mongo_version: "6.0"
+mongo_db_name: "travelmemory"
+mongo_app_user: "traveluser"
+mongo_admin_password: "{{vault_mongo_admin_password}}"
+mongo_app_password: "{{vault_mongo_app_password}}"
+
+my_ip_cidr: "103.164.161.6/32"
+vpc_cidr: "10.0.0.0/16"
+
+# Generated infrastructure variables
+web_public_ip: 3.110.85.116
+db_private_ip: 10.0.2.20
+
+

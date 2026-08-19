@@ -1,0 +1,2 @@
+vault_mongo_admin_password: "MyStrongAdminPassword!2026"
+vault_mongo_app_password: "MyStrongAppPassword!2026"
