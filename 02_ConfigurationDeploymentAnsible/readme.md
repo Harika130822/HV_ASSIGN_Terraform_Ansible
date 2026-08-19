@@ -54,7 +54,8 @@ ansible-playbook -i inventory/hosts.ini playbooks/site.yml --ask-vault-pass
 
 ## validation outputs
 
-> ![Uploading image.png…]()
+> <img width="520" height="874" alt="image" src="https://github.com/user-attachments/assets/239984b2-d0d8-4588-bb6d-e15fcecbfeef" />
+
 
 
 
