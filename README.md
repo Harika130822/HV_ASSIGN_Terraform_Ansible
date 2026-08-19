@@ -46,18 +46,26 @@ HV_ASSIGN_Terraform_Ansible
 ## 1. Ansible Configuration
 - Configure Ansible to communicate with the AWS EC2 instances.
 
+[Ansible Configuration](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/02_ConfigurationDeploymentAnsible/ansible/ansible.cfg)
+
 ## 2. Web Server Setup
 - Write an Ansible playbook to:
   - Install Node.js and NPM on the web server.
   - Clone the MERN application repository and install dependencies.
 
+[Web Server Setup files of Ansible - except for mongodb](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/02_ConfigurationDeploymentAnsible/ansible/roles)
+
 ## 3. Database Server Setup
 - Install and configure MongoDB on the database server using Ansible.
 - Secure the MongoDB instance and create necessary users and databases.
 
+[DB server setup files for Ansible - Common, Mongodb, Security ](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/02_ConfigurationDeploymentAnsible/ansible/roles)
+
 ## 4. Application Deployment
 - Configure environment variables and start the Node.js application.
 - Ensure the React frontend communicates with the Express backend.
+
+[Ansible Inventory, variables](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/02_ConfigurationDeploymentAnsible/ansible/inventory)
 
 ## 5. Security Hardening
 - Harden the security by configuring firewalls and security groups.
@@ -65,8 +73,12 @@ HV_ASSIGN_Terraform_Ansible
   - SSH key pairs.
   - Disabling root login.
 
+[Security Hardening](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/tree/main/02_ConfigurationDeploymentAnsible/ansible/roles/security)
+
 ---
 
+
+# Architecture Flow
 
 ```
                     Internet
@@ -96,13 +108,36 @@ HV_ASSIGN_Terraform_Ansible
                 | travelmemorydb |
                 +----------------+
 
-Terraform ---> Creates Infrastructure
-Ansible -----> Configures Servers & Deploys App
+# Deployment Flow
 
+Terraform ---> Creates Infrastructure
+   |
+   +--> VPC
+   +--> Public Subnet
+   +--> Private Subnet
+   +--> Web EC2
+   +--> MongoDB EC2
+   +--> Security Groups
+
+Ansible -----> Configures Servers & Deploys App
+   |
+   +--> Install NodeJS
+   +--> Install MongoDB
+   +--> Secure MongoDB
+   +--> Clone TravelMemory
+   +--> Create .env files
+   +--> npm install
+   +--> npm run build
+   +--> PM2 start
+   +--> UFW hardening
+   +--> Disable root login
+
+# Result:
+
+TravelMemory React UI
+        |
+Express API
+        |
+MongoDB Private EC2
 ```
 
-# Deliverables
-- **Terraform scripts** for AWS infrastructure setup.
-- **Ansible playbooks** for configuration and deployment of the MERN application.
-- **A detailed report** documenting the implementation process, including how the application components interact with each other and the infrastructure.
-- **Screenshots or a video recording** demonstrating the working MERN application.
