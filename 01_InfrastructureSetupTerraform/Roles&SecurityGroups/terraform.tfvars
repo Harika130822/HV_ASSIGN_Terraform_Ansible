@@ -17,4 +17,4 @@ iam_role_name = "web-server-role"
 key_name = "my-key"
 
 # My IP Configuration
-my_ip_cidr = " 103.164.161.6/32"
+my_ip_cidr = "103.164.161.6/32"
