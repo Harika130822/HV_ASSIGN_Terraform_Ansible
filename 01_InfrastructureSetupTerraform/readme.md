@@ -83,6 +83,15 @@ web_server_public_ip = [
 ]
 ```
 
+## Terraform Apply Output
+
+[Terraform Apply Output](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/01_InfrastructureSetupTerraform/apply_output.txt)
+
+## Terraform Destroy Output
+
+[Terraform Destroy Output](https://github.com/Harika130822/HV_ASSIGN_Terraform_Ansible/blob/main/01_InfrastructureSetupTerraform/destroy_output.txt)
+
+
 ## SSH validate to EC2
 
 > <img width="683" height="389" alt="image" src="https://github.com/user-attachments/assets/8c912171-2f0a-4db2-b67c-cb43288fa6b7" />
