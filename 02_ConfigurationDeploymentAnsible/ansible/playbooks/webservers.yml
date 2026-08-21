@@ -2,7 +2,11 @@
 - hosts: webservers
   become: true
   gather_facts: true
-
+  vars_files:
+    - ../inventory/group_vars/vaults.yml
+    - ../inventory/group_vars/generated.yml
+    - ../inventory/group_vars/all.yml
+    
   roles:
     - common
     - nodejs
