@@ -1,0 +1,17 @@
+// {{ ansible_managed }}
+module.exports = {
+  apps: [
+    {
+      name: "travelmemory-backend",
+      script: "index.js",
+      cwd: "{{ app_dir }}/backend",
+      env: {
+        NODE_ENV: "production"
+      },
+      instances: 1,
+      autorestart: true,
+      max_restarts: 10,
+      watch: false
+    }
+  ]
+};
