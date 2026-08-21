@@ -10,7 +10,7 @@ mongo_app_user: "traveluser"
 mongo_admin_password: "{{vault_mongo_admin_password}}"
 mongo_app_password: "{{vault_mongo_app_password}}"
 
-my_ip_cidr: "103.164.161.6/32"
+my_ip_cidr: "<MY_IP>/32"
 vpc_cidr: "10.0.0.0/16"
 
 # Generated infrastructure variables
