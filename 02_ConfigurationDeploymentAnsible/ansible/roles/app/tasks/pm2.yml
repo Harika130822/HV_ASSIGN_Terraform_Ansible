@@ -2,14 +2,14 @@
 - name: deploy pm2 file for backend
   template:
     src: pm.config.js.j2
-    dest: "{{ app_dest }}/backend/pm.config.js"
+    dest: "{{ app_dir }}/backend/pm.config.js"
     owner: ubuntu
     group: ubuntu
 
 - name: Start/reload Backend
   command: pm2 startOrReload pm.config.js
   args:
-    chdir: "{{ app_dest }}/backend"
+    chdir: "{{ app_dir }}/backend"
   become: true
   become_user: ubuntu
   environment: 

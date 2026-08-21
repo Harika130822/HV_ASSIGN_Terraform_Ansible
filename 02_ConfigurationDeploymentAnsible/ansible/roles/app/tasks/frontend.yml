@@ -2,13 +2,13 @@
 - name: Create frontend env file
   template:
     src: frontend.env.j2
-    dest: "{{ app_dest }}/frontend/.env"
+    dest: "{{ app_dir }}/frontend/.env"
     owner: ubuntu
     group: ubuntu
     
 - name: Install frontend packages
   npm:
-    path: "{{ app_dest }}/frontend"
+    path: "{{ app_dir }}/frontend"
     state: present
   become: true
   become_user: ubuntu
@@ -16,7 +16,7 @@
 - name: Build frontend
   shell: npm run build
   args:
-    chdir: "{{ app_dest }}/frontend"
-    creates: "{{ app_dest }}/frontend/build/index.html"
+    chdir: "{{ app_dir }}/frontend"
+    creates: "{{ app_dir }}/frontend/build/index.html"
   become: true
   become_user: ubuntu

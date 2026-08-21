@@ -2,14 +2,14 @@
 - name: Create backend env file
   template:
     src: backend.env.j2
-    dest: "{{ app_dest }}/backend/.env"
+    dest: "{{ app_dir }}/backend/.env"
     owner: ubuntu
     group: ubuntu
     mode: '0600'
 
 - name: Install backend packages
   npm:
-    path: "{{ app_dest }}/backend"
+    path: "{{ app_dir }}/backend"
     state: present
   become: true
   become_user: ubuntu
