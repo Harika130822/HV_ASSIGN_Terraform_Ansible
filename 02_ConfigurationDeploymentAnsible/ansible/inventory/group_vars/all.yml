@@ -11,11 +11,12 @@ mongo_app_user: "traveluser"
 mongo_admin_password: "{{vault_mongo_admin_password}}"
 mongo_app_password: "{{vault_mongo_app_password}}"
 
-my_ip_cidr: "103.164.161.6/32"
+my_ip_cidr: "<YOUR_IP>/32"
 vpc_cidr: "10.0.0.0/16"
 
 # Generated infrastructure variables
-web_public_ip: 3.110.85.116
-db_private_ip: 10.0.2.20
+web_public_ip: 13.207.185.81
+db_private_ip: 10.0.2.56
+
 
 

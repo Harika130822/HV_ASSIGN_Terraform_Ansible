@@ -8,9 +8,16 @@
     update_cache: true
   become: true
 
+- name: Disable default nginx site
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Restart nginx
+  become: true
+
 - name: Deploy reverse proxy config
   ansible.builtin.template:
-    src: reverse-proxy.conf.j2
+    src: nginx.conf.j2
     dest: /etc/nginx/sites-available/travelmemory.conf
   notify: Restart nginx
   become: true
