@@ -1,0 +1,794 @@
+PS C:\Users\abhis\Harika\Assignments\HV_Assign_Terraform_Ansible\01_InfrastructureSetupTerraform> terraform destroy
+module.ec2.data.aws_ami.ubuntu: Reading...
+module.roles_and_security_groups.data.aws_iam_policy_document.ec2_assume_role: Reading...
+module.ec2.aws_key_pair.my_key: Refreshing state... [id=my-key]
+module.vpc.aws_vpc.main: Refreshing state... [id=vpc-0bf27452d3897f6ce]
+module.vpc.aws_eip.nat_eip: Refreshing state... [id=eipalloc-0685bf84341c28006]
+module.roles_and_security_groups.data.aws_iam_policy_document.ec2_assume_role: Read complete after 0s [id=2851119427]
+module.roles_and_security_groups.aws_iam_role.web_server_role: Refreshing state... [id=web_server_role]
+module.ec2.data.aws_ami.ubuntu: Read complete after 0s [id=ami-0aa761682283b4cc8]
+module.vpc.aws_internet_gateway.igw: Refreshing state... [id=igw-09222fe274d643466]
+module.vpc.aws_subnet.public: Refreshing state... [id=subnet-0fd68e777fc03838b]
+module.vpc.aws_subnet.private: Refreshing state... [id=subnet-088ef9448e52f5d30]
+module.roles_and_security_groups.data.aws_vpc.main: Reading...
+module.roles_and_security_groups.aws_security_group.web_sg: Refreshing state... [id=sg-0fbf91fb4ce82890e]
+module.vpc.aws_route_table.public: Refreshing state... [id=rtb-02d8696ecd57ee838]
+module.roles_and_security_groups.data.aws_subnet.private: Reading...
+module.vpc.aws_route_table_association.public: Refreshing state... [id=rtbassoc-09d03b6924a5b4193]
+module.vpc.aws_nat_gateway.nat: Refreshing state... [id=nat-0c348288164054c6f]
+module.roles_and_security_groups.data.aws_subnet.public: Reading...
+module.roles_and_security_groups.aws_security_group.db_sg: Refreshing state... [id=sg-0fe6f91b18caabbcb]
+module.roles_and_security_groups.data.aws_subnet.private: Read complete after 0s [id=subnet-088ef9448e52f5d30]
+module.vpc.aws_route_table.private: Refreshing state... [id=rtb-02c50092d14e7c741]
+module.roles_and_security_groups.data.aws_subnet.public: Read complete after 0s [id=subnet-0fd68e777fc03838b]
+module.vpc.aws_route_table_association.private: Refreshing state... [id=rtbassoc-008b5888c70c74788]
+module.roles_and_security_groups.data.aws_vpc.main: Read complete after 0s [id=vpc-0bf27452d3897f6ce]
+module.roles_and_security_groups.aws_iam_role_policy_attachment.web_server_role_policy: Refreshing state... [id=web_server_role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore]
+module.roles_and_security_groups.aws_iam_instance_profile.web_server_instance_profile: Refreshing state... [id=web_server_instance_profile]
+module.ec2.aws_instance.db_server: Refreshing state... [id=i-04f802b17627d6ce3]
+module.ec2.aws_instance.web_server: Refreshing state... [id=i-0eccfc95646bea656]
+module.roles_and_security_groups.data.aws_instance.web_server: Reading...
+module.ec2.local_file.ansible_inventory: Refreshing state... [id=77489bf3fee56fff29a8ed78a39aa6e91a850490]
+module.ec2.local_file.ansible_group_vars: Refreshing state... [id=f05973ca3efa8b87b3c6054c3b7358a3e559cc3f]
+module.roles_and_security_groups.data.aws_instance.web_server: Read complete after 1s [id=i-0eccfc95646bea656]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # module.ec2.aws_instance.db_server will be destroyed
+  - resource "aws_instance" "db_server" {
+      - ami                                  = "ami-0aa761682283b4cc8" -> null
+      - arn                                  = "arn:aws:ec2:ap-south-1:129373676098:instance/i-04f802b17627d6ce3" -> null
+      - associate_public_ip_address          = false -> null
+      - availability_zone                    = "ap-south-1a" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - force_destroy                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - iam_instance_profile                 = "web_server_instance_profile" -> null
+      - id                                   = "i-04f802b17627d6ce3" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t3.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = (sensitive value) -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-03bf6497331632941" -> null
+      - private_dns                          = "ip-10-0-2-16.ap-south-1.compute.internal" -> null
+      - private_ip                           = "10.0.2.16" -> null
+      - region                               = "ap-south-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-088ef9448e52f5d30" -> null
+      - tags                                 = {
+          - "LaunchDate" = "2026-08-21"
+          - "Name"       = "db-server"
+          - "Project"    = "Assignment5"
+        } -> null
+      - tags_all                             = {
+          - "LaunchDate" = "2026-08-21"
+          - "Name"       = "db-server"
+          - "Project"    = "Assignment5"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-0fe6f91b18caabbcb",
+        ] -> null
+        # (9 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count            = 1 -> null
+          - threads_per_core      = 2 -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - primary_network_interface {
+          - delete_on_termination = true -> null
+          - network_interface_id  = "eni-03bf6497331632941" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 100 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-0e7a49f401e40167a" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.ec2.aws_instance.web_server will be destroyed
+  - resource "aws_instance" "web_server" {
+      - ami                                  = "ami-0aa761682283b4cc8" -> null
+      - arn                                  = "arn:aws:ec2:ap-south-1:129373676098:instance/i-0eccfc95646bea656" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "ap-south-1a" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - force_destroy                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - iam_instance_profile                 = "web_server_instance_profile" -> null
+      - id                                   = "i-0eccfc95646bea656" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t3.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = (sensitive value) -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-00b6801dd6ff0edfd" -> null
+      - private_dns                          = "ip-10-0-1-233.ap-south-1.compute.internal" -> null
+      - private_ip                           = "10.0.1.233" -> null
+      - public_ip                            = "13.233.230.103" -> null
+      - region                               = "ap-south-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0fd68e777fc03838b" -> null
+      - tags                                 = {
+          - "LaunchDate" = "2026-08-21"
+          - "Name"       = "web-server"
+          - "Project"    = "Assignment5"
+        } -> null
+      - tags_all                             = {
+          - "LaunchDate" = "2026-08-21"
+          - "Name"       = "web-server"
+          - "Project"    = "Assignment5"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-0fbf91fb4ce82890e",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count            = 1 -> null
+          - threads_per_core      = 2 -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - primary_network_interface {
+          - delete_on_termination = true -> null
+          - network_interface_id  = "eni-00b6801dd6ff0edfd" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 100 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-0b701557821d19e30" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.ec2.aws_key_pair.my_key will be destroyed
+  - resource "aws_key_pair" "my_key" {
+      - arn             = "arn:aws:ec2:ap-south-1:129373676098:key-pair/my-key" -> null
+      - fingerprint     = "4d:67:05:e7:5a:33:d7:90:c8:66:d7:8c:d5:7b:e7:26" -> null
+      - id              = "my-key" -> null
+      - key_name        = (sensitive value) -> null
+      - key_pair_id     = "key-0795f34ea7ce4c624" -> null
+      - key_type        = "rsa" -> null
+      - public_key      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGI+at/98P1d6EfC5HuDU8IksXtjJ8OnxEuzGVjjwwN+fmoiIwrE0/U9cS542sRYBgxndd+gqfuYERgyniTKw1pqPKBoS4/NoW2s8YAo4LwJqzAKFkfSsyCNoZlf/m5OTa6jjqBDdd+Zy5bnCL0T+NkJpczx9i5W4Oh5zlpamfMF5qBGOA9RHT3uqdIJI8Hxamfz4bSDd1dVUgB6gZXTpyKvxFUly/wM5MfVTve/sm4+rq7jl+YBdAJysBVcZVsFOhPj45USkZqyrNCmUWiT6eo/AfUE8sM2+w913v2xnJK/2gAitej4/fTk+CVVHS+vlhCCffPTPHU9MbtUItS+6N abhis@Bharathgift" -> null
+      - region          = "ap-south-1" -> null
+      - tags            = {} -> null
+      - tags_all        = {} -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.ec2.local_file.ansible_group_vars will be destroyed
+  - resource "local_file" "ansible_group_vars" {
+      - content              = <<-EOT
+            web_public_ip: 13.233.230.103
+            db_private_ip: 10.0.2.16
+        EOT -> null
+      - content_base64sha256 = "z4R8bGjJteUjMau/Bo+0MH9Ev2+qyAthGGZaw5r5UQQ=" -> null
+      - content_base64sha512 = "tVq1q8Rr5Mwa2l5IXrEy/bxA7LbFSStyR1dpu2dl1Da+bCoZPzsf1VyrXFl3x20hzKacX7WMDrpLwYlD/bPIng==" -> null
+      - content_md5          = "942361451d15544c4c0132ce7261dbde" -> null
+      - content_sha1         = "f05973ca3efa8b87b3c6054c3b7358a3e559cc3f" -> null
+      - content_sha256       = "cf847c6c68c9b5e52331abbf068fb4307f44bf6faac80b6118665ac39af95104" -> null
+      - content_sha512       = "b55ab5abc46be4cc1ada5e485eb132fdbc40ecb6c5492b72475769bb6765d436be6c2a193f3b1fd55cab5c5977c76d21cca69c5fb58c0eba4bc18943fdb3c89e" -> null
+      - directory_permission = "0777" -> null
+      - file_permission      = "0777" -> null
+      - filename             = "EC2/../ansible/group_vars/generated.yml" -> null
+      - id                   = "f05973ca3efa8b87b3c6054c3b7358a3e559cc3f" -> null
+    }
+
+  # module.ec2.local_file.ansible_inventory will be destroyed
+  - resource "local_file" "ansible_inventory" {
+      - content              = <<-EOT
+            [webservers]
+            13.233.230.103 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/travelmemory.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+            
+            [dbservers]
+            10.0.2.16 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/travelmemory.pem ansible_ssh_common_args='-o ProxyJump=ubuntu@13.233.230.103 -o StrictHostKeyChecking=no' 
+            
+            [all:vars]
+            ansible_python_interpreter=/usr/bin/python3
+        EOT -> null
+      - content_base64sha256 = "F9OF9DVcv/Lr0luE6Hq3bNTiugPRsjcv2JJSEx6QouU=" -> null
+      - content_base64sha512 = "20aXqv8hJ4pDFAvMb6yghG4Pi/tITyLWU47qBymTDNVE6IYq7CUu3vZFe0YQG0+nIf17xbtV5tHypiMa2ZzosA==" -> null
+      - content_md5          = "16f198f24321bb013a19270866b9d372" -> null
+      - content_sha1         = "77489bf3fee56fff29a8ed78a39aa6e91a850490" -> null
+      - content_sha256       = "17d385f4355cbff2ebd25b84e87ab76cd4e2ba03d1b2372fd89252131e90a2e5" -> null
+      - content_sha512       = "db4697aaff21278a43140bcc6faca0846e0f8bfb484f22d6538eea0729930cd544e8862aec252edef6457b46101b4fa721fd7bc5bb55e6d1f2a6231ad99ce8b0" -> null
+      - directory_permission = "0777" -> null
+      - file_permission      = "0777" -> null
+      - filename             = "EC2/../ansible/inventory/hosts.ini" -> null
+      - id                   = "77489bf3fee56fff29a8ed78a39aa6e91a850490" -> null
+    }
+
+  # module.roles_and_security_groups.aws_iam_instance_profile.web_server_instance_profile will be destroyed
+  - resource "aws_iam_instance_profile" "web_server_instance_profile" {
+      - arn         = "arn:aws:iam::129373676098:instance-profile/web_server_instance_profile" -> null
+      - create_date = "2026-08-21T13:37:16Z" -> null
+      - id          = "web_server_instance_profile" -> null
+      - name        = "web_server_instance_profile" -> null
+      - path        = "/" -> null
+      - role        = "web_server_role" -> null
+      - tags        = {} -> null
+      - tags_all    = {} -> null
+      - unique_id   = "AIPAR4H2FUJBF476QZLMZ" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.roles_and_security_groups.aws_iam_role.web_server_role will be destroyed
+  - resource "aws_iam_role" "web_server_role" {
+      - arn                   = "arn:aws:iam::129373676098:role/web_server_role" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-08-21T13:37:14Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "web_server_role" -> null
+      - managed_policy_arns   = [
+          - "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "web_server_role" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {} -> null
+      - unique_id             = "AROAR4H2FUJBBUEHOXH32" -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # module.roles_and_security_groups.aws_iam_role_policy_attachment.web_server_role_policy will be destroyed
+  - resource "aws_iam_role_policy_attachment" "web_server_role_policy" {
+      - id         = "web_server_role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" -> null
+      - role       = "web_server_role" -> null
+    }
+
+  # module.roles_and_security_groups.aws_security_group.db_sg will be destroyed
+  - resource "aws_security_group" "db_sg" {
+      - arn                    = "arn:aws:ec2:ap-south-1:129373676098:security-group/sg-0fe6f91b18caabbcb" -> null
+      - description            = "Managed by Terraform" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-0fe6f91b18caabbcb" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = []
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = [
+                  - "sg-0fbf91fb4ce82890e",
+                ]
+              - self             = false
+              - to_port          = 22
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = []
+              - from_port        = 27017
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = [
+                  - "sg-0fbf91fb4ce82890e",
+                ]
+              - self             = false
+              - to_port          = 27017
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "terraform-059108df2c9ee575ef299f114d" -> null
+      - name_prefix            = "terraform-" -> null
+      - owner_id               = "129373676098" -> null
+      - region                 = "ap-south-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "db-sg"
+        } -> null
+      - tags_all               = {
+          - "Name" = "db-sg"
+        } -> null
+      - vpc_id                 = "vpc-0bf27452d3897f6ce" -> null
+    }
+
+  # module.roles_and_security_groups.aws_security_group.web_sg will be destroyed
+  - resource "aws_security_group" "web_sg" {
+      - arn                    = "arn:aws:ec2:ap-south-1:129373676098:security-group/sg-0fbf91fb4ce82890e" -> null
+      - description            = "Managed by Terraform" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-0fbf91fb4ce82890e" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 443
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 443
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "103.164.161.6/32",
+                ]
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "terraform-711af7c3bf6d3825049b04c241" -> null
+      - name_prefix            = "terraform-" -> null
+      - owner_id               = "129373676098" -> null
+      - region                 = "ap-south-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "web-sg"
+        } -> null
+      - tags_all               = {
+          - "Name" = "web-sg"
+        } -> null
+      - vpc_id                 = "vpc-0bf27452d3897f6ce" -> null
+    }
+
+  # module.vpc.aws_eip.nat_eip will be destroyed
+  - resource "aws_eip" "nat_eip" {
+      - allocation_id            = "eipalloc-0685bf84341c28006" -> null
+      - arn                      = "arn:aws:ec2:ap-south-1:129373676098:elastic-ip/eipalloc-0685bf84341c28006" -> null
+      - association_id           = "eipassoc-07b636742bc32c24b" -> null
+      - domain                   = "vpc" -> null
+      - id                       = "eipalloc-0685bf84341c28006" -> null
+      - network_border_group     = "ap-south-1" -> null
+      - network_interface        = "eni-0727fa4e92c3aa931" -> null
+      - private_dns              = "ip-10-0-1-253.ap-south-1.compute.internal" -> null
+      - private_ip               = "10.0.1.253" -> null
+      - public_dns               = "ec2-65-1-74-53.ap-south-1.compute.amazonaws.com" -> null
+      - public_ip                = "65.1.74.53" -> null
+      - public_ipv4_pool         = "amazon" -> null
+      - region                   = "ap-south-1" -> null
+      - tags                     = {
+          - "Name" = "main-nat-eip"
+        } -> null
+      - tags_all                 = {
+          - "Name" = "main-nat-eip"
+        } -> null
+        # (6 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_internet_gateway.igw will be destroyed
+  - resource "aws_internet_gateway" "igw" {
+      - arn      = "arn:aws:ec2:ap-south-1:129373676098:internet-gateway/igw-09222fe274d643466" -> null
+      - id       = "igw-09222fe274d643466" -> null
+      - owner_id = "129373676098" -> null
+      - region   = "ap-south-1" -> null
+      - tags     = {
+          - "Name" = "main-igw"
+        } -> null
+      - tags_all = {
+          - "Name" = "main-igw"
+        } -> null
+      - vpc_id   = "vpc-0bf27452d3897f6ce" -> null
+    }
+
+  # module.vpc.aws_nat_gateway.nat will be destroyed
+  - resource "aws_nat_gateway" "nat" {
+      - allocation_id                      = "eipalloc-0685bf84341c28006" -> null
+      - association_id                     = "eipassoc-07b636742bc32c24b" -> null
+      - availability_mode                  = "zonal" -> null
+      - connectivity_type                  = "public" -> null
+      - id                                 = "nat-0c348288164054c6f" -> null
+      - network_interface_id               = "eni-0727fa4e92c3aa931" -> null
+      - private_ip                         = "10.0.1.253" -> null
+      - public_ip                          = "65.1.74.53" -> null
+      - region                             = "ap-south-1" -> null
+      - regional_nat_gateway_address       = [] -> null
+      - secondary_allocation_ids           = [] -> null
+      - secondary_private_ip_address_count = 0 -> null
+      - secondary_private_ip_addresses     = [] -> null
+      - subnet_id                          = "subnet-0fd68e777fc03838b" -> null
+      - tags                               = {
+          - "Name" = "main-nat"
+        } -> null
+      - tags_all                           = {
+          - "Name" = "main-nat"
+        } -> null
+      - vpc_id                             = "vpc-0bf27452d3897f6ce" -> null
+    }
+
+  # module.vpc.aws_route_table.private will be destroyed
+  - resource "aws_route_table" "private" {
+      - arn              = "arn:aws:ec2:ap-south-1:129373676098:route-table/rtb-02c50092d14e7c741" -> null
+      - id               = "rtb-02c50092d14e7c741" -> null
+      - owner_id         = "129373676098" -> null
+      - propagating_vgws = [] -> null
+      - region           = "ap-south-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - nat_gateway_id             = "nat-0c348288164054c6f"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "private-route-table"
+        } -> null
+      - tags_all         = {
+          - "Name" = "private-route-table"
+        } -> null
+      - vpc_id           = "vpc-0bf27452d3897f6ce" -> null
+    }
+
+  # module.vpc.aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:ap-south-1:129373676098:route-table/rtb-02d8696ecd57ee838" -> null
+      - id               = "rtb-02d8696ecd57ee838" -> null
+      - owner_id         = "129373676098" -> null
+      - propagating_vgws = [] -> null
+      - region           = "ap-south-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-09222fe274d643466"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "public-route-table"
+        } -> null
+      - tags_all         = {
+          - "Name" = "public-route-table"
+        } -> null
+      - vpc_id           = "vpc-0bf27452d3897f6ce" -> null
+    }
+
+  # module.vpc.aws_route_table_association.private will be destroyed
+  - resource "aws_route_table_association" "private" {
+      - id             = "rtbassoc-008b5888c70c74788" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-02c50092d14e7c741" -> null
+      - subnet_id      = "subnet-088ef9448e52f5d30" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.public will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-09d03b6924a5b4193" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-02d8696ecd57ee838" -> null
+      - subnet_id      = "subnet-0fd68e777fc03838b" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_subnet.private will be destroyed
+  - resource "aws_subnet" "private" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:129373676098:subnet/subnet-088ef9448e52f5d30" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1a" -> null
+      - availability_zone_id                           = "aps1-az1" -> null
+      - cidr_block                                     = "10.0.2.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-088ef9448e52f5d30" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "129373676098" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "Name" = "private-subnet"
+        } -> null
+      - tags_all                                       = {
+          - "Name" = "private-subnet"
+        } -> null
+      - vpc_id                                         = "vpc-0bf27452d3897f6ce" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.public will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:129373676098:subnet/subnet-0fd68e777fc03838b" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1a" -> null
+      - availability_zone_id                           = "aps1-az1" -> null
+      - cidr_block                                     = "10.0.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0fd68e777fc03838b" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "129373676098" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "Name" = "public-subnet"
+        } -> null
+      - tags_all                                       = {
+          - "Name" = "public-subnet"
+        } -> null
+      - vpc_id                                         = "vpc-0bf27452d3897f6ce" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                                  = "arn:aws:ec2:ap-south-1:129373676098:vpc/vpc-0bf27452d3897f6ce" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.0.0.0/16" -> null
+      - default_network_acl_id               = "acl-03fb9a00ce9a1494f" -> null
+      - default_route_table_id               = "rtb-05b78935679363a8f" -> null
+      - default_security_group_id            = "sg-02cf33ef6f2ce5340" -> null
+      - dhcp_options_id                      = "dopt-0a00a53e4fcb72cc2" -> null
+      - enable_dns_hostnames                 = false -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0bf27452d3897f6ce" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-05b78935679363a8f" -> null
+      - owner_id                             = "129373676098" -> null
+      - region                               = "ap-south-1" -> null
+      - tags                                 = {
+          - "Name" = "main-vpc"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "main-vpc"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 20 to destroy.
+
+Changes to Outputs:
+  - db_server_instance_ids  = [
+      - [
+          - "i-04f802b17627d6ce3",
+        ],
+    ] -> null
+  - iam_role_arn            = "arn:aws:iam::129373676098:role/web_server_role" -> null
+  - iam_role_name           = "web_server_role" -> null
+  - private_subnet_id       = "subnet-088ef9448e52f5d30" -> null
+  - public_subnet_id        = "subnet-0fd68e777fc03838b" -> null
+  - security_group_db_id    = "sg-0fe6f91b18caabbcb" -> null
+  - security_group_id       = "sg-0fbf91fb4ce82890e" -> null
+  - vpc_id                  = "vpc-0bf27452d3897f6ce" -> null
+  - web_server_instance_ids = [
+      - [
+          - "i-0eccfc95646bea656",
+        ],
+    ] -> null
+  - web_server_public_ip    = [
+      - [
+          - "13.233.230.103",
+        ],
+    ] -> null
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+module.ec2.local_file.ansible_group_vars: Destroying... [id=f05973ca3efa8b87b3c6054c3b7358a3e559cc3f]
+module.ec2.local_file.ansible_inventory: Destroying... [id=77489bf3fee56fff29a8ed78a39aa6e91a850490]
+module.ec2.local_file.ansible_group_vars: Destruction complete after 0s
+module.ec2.local_file.ansible_inventory: Destruction complete after 0s
+module.vpc.aws_route_table_association.private: Destroying... [id=rtbassoc-008b5888c70c74788]
+module.vpc.aws_route_table_association.public: Destroying... [id=rtbassoc-09d03b6924a5b4193]
+module.roles_and_security_groups.aws_iam_role_policy_attachment.web_server_role_policy: Destroying... [id=web_server_role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore]
+module.ec2.aws_instance.web_server: Destroying... [id=i-0eccfc95646bea656]
+module.ec2.aws_instance.db_server: Destroying... [id=i-04f802b17627d6ce3]
+module.vpc.aws_route_table_association.private: Destruction complete after 0s
+module.vpc.aws_route_table_association.public: Destruction complete after 0s
+module.vpc.aws_route_table.public: Destroying... [id=rtb-02d8696ecd57ee838]
+module.vpc.aws_route_table.private: Destroying... [id=rtb-02c50092d14e7c741]
+module.vpc.aws_route_table.public: Destruction complete after 0s
+module.vpc.aws_internet_gateway.igw: Destroying... [id=igw-09222fe274d643466]
+module.vpc.aws_route_table.private: Destruction complete after 0s
+module.vpc.aws_nat_gateway.nat: Destroying... [id=nat-0c348288164054c6f]
+module.roles_and_security_groups.aws_iam_role_policy_attachment.web_server_role_policy: Destruction complete after 1s
+module.ec2.aws_instance.web_server: Still destroying... [id=i-0eccfc95646bea656, 00m10s elapsed]
+module.ec2.aws_instance.db_server: Still destroying... [id=i-04f802b17627d6ce3, 00m10s elapsed]
+module.vpc.aws_internet_gateway.igw: Still destroying... [id=igw-09222fe274d643466, 00m10s elapsed]
+module.vpc.aws_nat_gateway.nat: Still destroying... [id=nat-0c348288164054c6f, 00m10s elapsed]
+module.ec2.aws_instance.web_server: Still destroying... [id=i-0eccfc95646bea656, 00m20s elapsed]
+module.ec2.aws_instance.db_server: Still destroying... [id=i-04f802b17627d6ce3, 00m20s elapsed]
+module.vpc.aws_internet_gateway.igw: Still destroying... [id=igw-09222fe274d643466, 00m20s elapsed]
+module.vpc.aws_nat_gateway.nat: Still destroying... [id=nat-0c348288164054c6f, 00m20s elapsed]
+module.ec2.aws_instance.db_server: Destruction complete after 29s
+module.vpc.aws_subnet.private: Destroying... [id=subnet-088ef9448e52f5d30]
+module.roles_and_security_groups.aws_security_group.db_sg: Destroying... [id=sg-0fe6f91b18caabbcb]
+module.ec2.aws_instance.web_server: Still destroying... [id=i-0eccfc95646bea656, 00m30s elapsed]
+module.ec2.aws_instance.web_server: Destruction complete after 30s
+module.roles_and_security_groups.aws_iam_instance_profile.web_server_instance_profile: Destroying... [id=web_server_instance_profile]
+module.ec2.aws_key_pair.my_key: Destroying... [id=my-key]
+module.ec2.aws_key_pair.my_key: Destruction complete after 0s
+module.vpc.aws_subnet.private: Destruction complete after 1s
+module.roles_and_security_groups.aws_security_group.db_sg: Destruction complete after 1s
+module.roles_and_security_groups.aws_security_group.web_sg: Destroying... [id=sg-0fbf91fb4ce82890e]
+module.vpc.aws_internet_gateway.igw: Still destroying... [id=igw-09222fe274d643466, 00m30s elapsed]
+module.vpc.aws_nat_gateway.nat: Still destroying... [id=nat-0c348288164054c6f, 00m30s elapsed]
+module.roles_and_security_groups.aws_iam_instance_profile.web_server_instance_profile: Destruction complete after 0s
+module.roles_and_security_groups.aws_iam_role.web_server_role: Destroying... [id=web_server_role]
+module.roles_and_security_groups.aws_security_group.web_sg: Destruction complete after 1s
+module.roles_and_security_groups.aws_iam_role.web_server_role: Destruction complete after 1s
+module.vpc.aws_internet_gateway.igw: Still destroying... [id=igw-09222fe274d643466, 00m40s elapsed]
+module.vpc.aws_nat_gateway.nat: Still destroying... [id=nat-0c348288164054c6f, 00m40s elapsed]
+module.vpc.aws_internet_gateway.igw: Still destroying... [id=igw-09222fe274d643466, 00m50s elapsed]
+module.vpc.aws_nat_gateway.nat: Still destroying... [id=nat-0c348288164054c6f, 00m50s elapsed]
+module.vpc.aws_internet_gateway.igw: Destruction complete after 59s
+module.vpc.aws_nat_gateway.nat: Still destroying... [id=nat-0c348288164054c6f, 01m00s elapsed]
+module.vpc.aws_nat_gateway.nat: Destruction complete after 1m1s
+module.vpc.aws_eip.nat_eip: Destroying... [id=eipalloc-0685bf84341c28006]
+module.vpc.aws_subnet.public: Destroying... [id=subnet-0fd68e777fc03838b]
+module.vpc.aws_subnet.public: Destruction complete after 1s
+module.vpc.aws_vpc.main: Destroying... [id=vpc-0bf27452d3897f6ce]
+module.vpc.aws_eip.nat_eip: Destruction complete after 1s
+module.vpc.aws_vpc.main: Destruction complete after 0s
+
+Destroy complete! Resources: 20 destroyed.
