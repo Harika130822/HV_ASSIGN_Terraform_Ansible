@@ -1,4 +1,4 @@
-app_repo: "https://github.com/Harika130822/HV_TravelMemory.git"
+app_repo: "https://github.com/UnpredictablePrashant/TravelMemory.git"
 app_dir: "/opt/travelmemory"
 nodejs_version: 18
 app_port: 3001
