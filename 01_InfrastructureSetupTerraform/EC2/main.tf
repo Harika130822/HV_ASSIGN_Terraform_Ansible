@@ -48,7 +48,7 @@ resource "local_file" "ansible_inventory" {
 }
 
 resource "local_file" "ansible_group_vars" {
-  filename = "${path.module}/../ansible/group_vars/generated.yml"
+  filename = "${path.module}/../../02_ConfigurationDeploymentAnsible/ansible/inventory/group_vars/generated.yml"
   content  = <<EOT
 web_public_ip: ${aws_instance.web_server.public_ip}
 db_private_ip: ${aws_instance.db_server.private_ip}

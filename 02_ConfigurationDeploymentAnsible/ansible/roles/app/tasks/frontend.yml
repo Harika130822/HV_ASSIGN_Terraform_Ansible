@@ -17,6 +17,5 @@
   shell: npm run build
   args:
     chdir: "{{ app_dir }}/frontend"
-    creates: "{{ app_dir }}/frontend/build/index.html"
   become: true
   become_user: ubuntu

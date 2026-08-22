@@ -12,12 +12,3 @@ mongo_app_password: "{{vault_mongo_app_password}}"
 
 my_ip_cidr: "<MY_IP>/32"
 vpc_cidr: "10.0.0.0/16"
-
-# Generated infrastructure variables
-web_public_ip: 3.110.86.125
-db_private_ip: 10.0.2.17
-
-
-
-
-
