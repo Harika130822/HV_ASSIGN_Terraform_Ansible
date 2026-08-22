@@ -40,7 +40,7 @@ resource "aws_instance" "db_server" {
 }
 
 resource "local_file" "ansible_inventory" {
-  filename = "${path.module}/../ansible/inventory/hosts.ini"
+  filename = "${path.module}/../../02_ConfigurationDeploymentAnsible/ansible/inventory/hosts.ini"
   content = templatefile("${path.module}/templates/inventory.tpl", {
     web_server_public_ip = aws_instance.web_server.public_ip
     db_server_private_ip = aws_instance.db_server.private_ip
